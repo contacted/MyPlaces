@@ -11,8 +11,8 @@ class MainViewController: UITableViewController {
     
     let restaurantNames = [
         "Burger Heroes", "Kitchen", "Bonsai", "Darhastan",
-        "Indo-China", "X.O.", "Balkan Grill", "Sherlock Holmes",
-        "Speak Easy", "Mrris Pub", "Tasty Stories",
+        "Indo-China", "X.O", "Balkan Grill", "Sherlock Holmes",
+        "Speak Easy", "Morris Pub", "Tasty Stories",
         "Classic", "Love&Life", "Shock", "Barrel"
     ]
 
@@ -32,6 +32,8 @@ class MainViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")
         var content = cell?.defaultContentConfiguration()
+        content?.image = UIImage(named: restaurantNames[indexPath.row])
+        content?.imageProperties.maximumSize = CGSize(width: 60, height: 60)
         content?.text = restaurantNames[indexPath.row]
         cell?.contentConfiguration = content
         return cell!
