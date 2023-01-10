@@ -33,10 +33,18 @@ class MainViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")
         var content = cell?.defaultContentConfiguration()
         content?.image = UIImage(named: restaurantNames[indexPath.row])
-        content?.imageProperties.maximumSize = CGSize(width: 60, height: 60)
+        content?.imageProperties.maximumSize = CGSize(width: 70, height: 70)
+        content?.imageProperties.cornerRadius = 35
         content?.text = restaurantNames[indexPath.row]
         cell?.contentConfiguration = content
         return cell!
+    }
+    
+    
+    // MARK: - Table view delegate
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 85
     }
     
 //    var content = cell.defaultContentConfiguration()
