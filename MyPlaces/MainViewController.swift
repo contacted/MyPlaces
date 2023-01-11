@@ -9,13 +9,9 @@ import UIKit
 
 class MainViewController: UITableViewController {
     
-    let restaurantNames = [
-        "Burger Heroes", "Kitchen", "Bonsai", "Darhastan",
-        "Indo-China", "X.O", "Balkan Grill", "Sherlock Holmes",
-        "Speak Easy", "Morris Pub", "Tasty Stories",
-        "Classic", "Love&Life", "Shock", "Barrel"
-    ]
-
+    
+    let places = Place.getPlaces()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -25,79 +21,24 @@ class MainViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return restaurantNames.count
+        return places.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! CustomTableViewCell
         
-        cell.nameLabel.text = restaurantNames[indexPath.row]
-        cell.imageOfPlace.image = UIImage(named: restaurantNames[indexPath.row])
+        cell.nameLabel.text = places[indexPath.row].name
+        cell.locationLabel.text = places[indexPath.row].location
+        cell.typeLabel.text = places[indexPath.row].type
+        cell.imageOfPlace.image = UIImage(named: places[indexPath.row].image)
         cell.imageOfPlace.layer.cornerRadius = cell.imageOfPlace.frame.size.height / 2
         cell.imageOfPlace.clipsToBounds = true
-//        var content = cell.defaultContentConfiguration()
-//        content.image = UIImage(named: restaurantNames[indexPath.row])
-//        content.imageProperties.maximumSize = CGSize(width: 70, height: 70)
-//        content.imageProperties.cornerRadius = 35
-//        content.text = restaurantNames[indexPath.row]
-//        cell.contentConfiguration = content
+
         return cell
     }
+
     
-    
-    // MARK: - Table view delegate
-    
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 85
-    }
-    
-//    var content = cell.defaultContentConfiguration()
-//
-//    // Configure content.
-//    content.image = UIImage(systemName: "star")
-//    content.text = "Favorites"
-//
-//    // Customize appearance.
-//    content.imageProperties.tintColor = .purple
-//
-//    cell.contentConfiguration = content
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
     /*
     // MARK: - Navigation
 
